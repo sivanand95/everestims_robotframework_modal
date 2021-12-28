@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.10.1 on win32)" generated="20211228 20:57:55.384" rpa="false" schemaversion="2">
+<suite id="s1" name="Modaltest" source="C:\everestims_assignment\TestCases\modaltest.robot">
+<kw name="LoadTestApp" library="test_Helpers" type="SETUP">
+<arg>${TestUrl}</arg>
+<arg>${Browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${TestUrl}</arg>
+<arg>${Browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20211228 20:57:55.895" level="INFO">Opening browser 'chrome' to base url 'https://codepen.io/maouida/pen/NPGaaN'.</msg>
+<status status="PASS" starttime="20211228 20:57:55.895" endtime="20211228 20:58:02.164"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211228 20:58:02.165" endtime="20211228 20:58:02.342"/>
+</kw>
+<status status="PASS" starttime="20211228 20:57:55.893" endtime="20211228 20:58:02.343"/>
+</kw>
+<test id="s1-t1" name="traverseThroughModalWindow">
+<kw name="SwitchToBottomFrame" library="test_Helpers">
+<arg>${Txt_Frame_Title}</arg>
+<kw name="Select Frame" library="SeleniumLibrary">
+<arg>${Obj_Frame}</arg>
+<doc>Sets frame identified by ``locator`` as the current frame.</doc>
+<msg timestamp="20211228 20:58:02.347" level="INFO">Selecting frame 'result'.</msg>
+<status status="PASS" starttime="20211228 20:58:02.346" endtime="20211228 20:58:02.499"/>
+</kw>
+<kw name="Current Frame Should Contain" library="SeleniumLibrary">
+<arg>${Txt_FrameTitle}</arg>
+<doc>Verifies that the current frame contains ``text``.</doc>
+<msg timestamp="20211228 20:58:02.521" level="INFO">Current frame contains text 'Stack Bootstrap modals nicely'.</msg>
+<status status="PASS" starttime="20211228 20:58:02.499" endtime="20211228 20:58:02.521"/>
+</kw>
+<status status="PASS" starttime="20211228 20:58:02.345" endtime="20211228 20:58:02.522"/>
+</kw>
+<kw name="ModalButonClick" library="test_Helpers">
+<arg>${Window_Delay}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${Btn_Modal}</arg>
+<arg>${Delay_Window}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211228 20:58:02.525" endtime="20211228 20:58:02.576"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Btn_Modal}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20211228 20:58:02.576" level="INFO">Clicking element 'xpath:/html/body/div/button'.</msg>
+<status status="PASS" starttime="20211228 20:58:02.576" endtime="20211228 20:58:02.710"/>
+</kw>
+<status status="PASS" starttime="20211228 20:58:02.524" endtime="20211228 20:58:02.710"/>
+</kw>
+<kw name="IterationForModal" library="test_Helpers">
+<kw name="Get WebElements" library="SeleniumLibrary">
+<var>@{ListofElement}</var>
+<arg>${Obj_FrameContainer}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<msg timestamp="20211228 20:58:02.733" level="INFO">@{ListofElement} = [ &lt;selenium.webdriver.remote.webelement.WebElement (session="4f33e6e681d6d268350b64296f92f531", element="32426b5b-9522-48b2-a3ab-bfb41e3b0ba3")&gt; | &lt;selenium.webdriver.remote.webelement.WebElement (ses...</msg>
+<status status="PASS" starttime="20211228 20:58:02.712" endtime="20211228 20:58:02.733"/>
+</kw>
+<for flavor="IN">
+<var>${element}</var>
+<value>@{ListofElement}</value>
+<iter>
+<var name="${element}">&lt;selenium.webdriver.remote.webelement.WebElement (session="4f33e6e681d6d268350b64296f92f531", element="32426b5b-9522-48b2-a3ab-bfb41e3b0ba3")&gt;</var>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<var>${text}</var>
+<arg>${element}</arg>
+<arg>id</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<msg timestamp="20211228 20:58:02.753" level="INFO">${text} = test-modal</msg>
+<status status="PASS" starttime="20211228 20:58:02.734" endtime="20211228 20:58:02.753"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${contains}</var>
+<arg>"${Obj_Modal_Win1}" in """${text}"""</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20211228 20:58:02.754" level="INFO">${contains} = True</msg>
+<status status="PASS" starttime="20211228 20:58:02.754" endtime="20211228 20:58:02.754"/>
+</kw>
+<if>
+<branch type="IF" condition="${contains}">
+<kw name="Evaluate" library="BuiltIn">
+<var>${validate}</var>
+<arg>"${Obj_Modal_Win4}" == """${text}"""</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20211228 20:58:02.756" level="INFO">${validate} = False</msg>
+<status status="PASS" starttime="20211228 20:58:02.755" endtime="20211228 20:58:02.756"/>
+</kw>
+<kw name="Exit For Loop If" library="BuiltIn">
+<arg>${validate}</arg>
+<doc>Stops executing the enclosing for loop if the ``condition`` is true.</doc>
+<status status="PASS" starttime="20211228 20:58:02.756" endtime="20211228 20:58:02.756"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${element}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20211228 20:58:02.757" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="4f33e6e681d6d268350b64296f92f531", element="32426b5b-9522-48b2-a3ab-bfb41e3b0ba3")&gt;'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20211228 20:58:03.242" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-56.png"&gt;&lt;img src="selenium-screenshot-56.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20211228 20:58:02.776" endtime="20211228 20:58:03.242"/>
+</kw>
+<msg timestamp="20211228 20:58:03.327" level="FAIL">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=96.0.4664.110)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x01176903+2517251]
+	Ordinal0 [0x0110F8E1+2095329]
+	Ordinal0 [0x01012710+1058576]
+	Ordinal0 [0x0103E324+1237796]
+	Ordinal0 [0x01034037+1196087]
+	Ordinal0 [0x010564D3+1336531]
+	Ordinal0 [0x01033A36+1194550]
+	Ordinal0 [0x010565BA+1336762]
+	Ordinal0 [0x01065BBF+1399743]
+	Ordinal0 [0x0105639B+1336219]
+	Ordinal0 [0x010327A7+1189799]
+	Ordinal0 [0x01033609+1193481]
+	GetHandleVerifier [0x01305904+1577972]
+	GetHandleVerifier [0x013B0B97+2279047]
+	GetHandleVerifier [0x01206D09+534521]
+	GetHandleVerifier [0x01205DB9+530601]
+	Ordinal0 [0x01114FF9+2117625]
+	Ordinal0 [0x011198A8+2136232]
+	Ordinal0 [0x011199E2+2136546]
+	Ordinal0 [0x01123541+2176321]
+	BaseThreadInitThunk [0x7668FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x76EF7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x76EF7A6E+238]
+</msg>
+<status status="FAIL" starttime="20211228 20:58:02.756" endtime="20211228 20:58:03.328"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20211228 20:58:03.330" endtime="20211228 20:58:03.330"/>
+</kw>
+<status status="FAIL" starttime="20211228 20:58:02.755" endtime="20211228 20:58:03.330"/>
+</branch>
+<status status="FAIL" starttime="20211228 20:58:02.755" endtime="20211228 20:58:03.330"/>
+</if>
+<status status="FAIL" starttime="20211228 20:58:02.733" endtime="20211228 20:58:03.331"/>
+</iter>
+<status status="FAIL" starttime="20211228 20:58:02.733" endtime="20211228 20:58:03.331"/>
+</for>
+<status status="FAIL" starttime="20211228 20:58:02.711" endtime="20211228 20:58:03.334"/>
+</kw>
+<status status="FAIL" starttime="20211228 20:58:02.343" endtime="20211228 20:58:03.336">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=96.0.4664.110)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x01176903+2517251]
+	Ordinal0 [0x0110F8E1+2095329]
+	Ordinal0 [0x01012710+1058576]
+	Ordinal0 [0x0103E324+1237796]
+	Ordinal0 [0x01034037+1196087]
+	Ordinal0 [0x010564D3+1336531]
+	Ordinal0 [0x01033A36+1194550]
+	Ordinal0 [0x010565BA+1336762]
+	Ordinal0 [0x01065BBF+1399743]
+	Ordinal0 [0x0105639B+1336219]
+	Ordinal0 [0x010327A7+1189799]
+	Ordinal0 [0x01033609+1193481]
+	GetHandleVerifier [0x01305904+1577972]
+	GetHandleVerifier [0x013B0B97+2279047]
+	GetHandleVerifier [0x01206D09+534521]
+	GetHandleVerifier [0x01205DB9+530601]
+	Ordinal0 [0x01114FF9+2117625]
+	Ordinal0 [0x011198A8+2136232]
+	Ordinal0 [0x011199E2+2136546]
+	Ordinal0 [0x01123541+2176321]
+	BaseThreadInitThunk [0x7668FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x76EF7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x76EF7A6E+238]
+</status>
+</test>
+<kw name="TestClosure" library="test_Helpers" type="TEARDOWN">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20211228 20:58:03.345" endtime="20211228 20:58:05.712"/>
+</kw>
+<status status="PASS" starttime="20211228 20:58:03.344" endtime="20211228 20:58:05.713"/>
+</kw>
+<status status="FAIL" starttime="20211228 20:57:55.387" endtime="20211228 20:58:05.713"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Modaltest">Modaltest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
