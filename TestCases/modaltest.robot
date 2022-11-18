@@ -9,7 +9,7 @@ Suite Teardown      TestClosure
 ${TestUrl}      https://codepen.io/maouida/pen/NPGaaN
 ${Browser}      chrome
 ${Txt_Frame_Title}  Stack Bootstrap modals nicely
-${Window_Delay}     90
+${Window_Delay}     120
 
 *** Test Cases ***
 traverseThroughModalWindow
